@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Performer Registration Form</title>
+
+</head>
+
+	<div layout:fragment="content" class="container mySpace">
+	<div class="wrapper fadeInDown">
+	 <div id="formContent">
+	<div class="alert alert-warning" th:if="${exist}">
+	<p class="text text-center">
+	  User with this Email already Exist
+	</p>
+	</div>
+		<form th:action="@{/register}" th:object="${user}" method="post">
+<div class="card border-primary mb-3" style="margin: auto;">
+  <div class="card-header" style=" font-size:35px; background-color:#66ff99;color:#ffffff ">Customer Registration</div>
+  <div class="card-body">
+    <h2 class="card-title">Customer Information</h2>
+    <div class="form-group">
+				 <input
+					type="text" class="form-control" th:field="*{email}" id="email" placeholder="Email"  />
+				<div class="text text-danger" th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}"></div>
+			</div>
+			<div class="form-group">
+				 <input
+					type="password" class="form-control" th:field="*{password}"
+					id="password" placeholder="Password"/>
+				<div class="text text-danger"
+					th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+			</div>
+			<div class="form-group">
+				 <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Full Name"/>
+				<div class="text text-danger" th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}"></div>
+
+			</div>
+			
+			<div class="form-group">
+				 <input type="text" class="form-control" th:field="*{address}" id="address" placeholder="Shipping Address"/>
+				<div class="text text-danger" th:if="${#fields.hasErrors('address')}"
+					th:errors="*{address}"></div>
+
+			</div>
+			<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+			
+  </div>
+</div>
+</form>
+</div>
+</div>
+			
+
+		
+	</div>
+</body>
+</html>

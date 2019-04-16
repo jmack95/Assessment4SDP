@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Index Page</title>
+<style>
+#fadeout {
+  opacity: 1;
+  transition: 1s opacity;
+  text-align: left;
+  text-color: purple;
+  font-size:42px;
+}
+</style>
+</head>
+<body background="images/profile.jpg" style="background-size: cover;">
+<body>
+
+
+
+	<div layout:fragment="content" class="container mySpace">
+
+	
+
+<div id="fadeout">Hey,<span th:utext="${name}"></span></div>
+
+
+<!-- 
+		<div class="box">
+    <div class="container">
+     	<div class="row">
+			 
+			    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a >
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/list1.jpg" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>Performances</h4>
+						</div>
+                        
+						<div class="text">
+							<span>View all performances.</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>	
+				
+				
+				
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/reservation"sec:authorize="hasRole('ROLE_BUSINESS')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/reservedBus.jpg" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>Reserve Location</h4>
+						</div>
+                        
+						<div class="text">
+							<span>As a business you can reserve also a location!</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>	 
+				
+				  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/addComplaint"sec:authorize="hasRole('ROLE_BUSINESS')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/complaint.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>Make a complaint</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Let us know how performances in your location have gone.</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/marker"sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/addLoc.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>Add Location</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Add a suitable location for our performers</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>
+				
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/registerAdmin"sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/admin.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>Add New Admin</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Add new Admin to help with the running of BuskerSpot</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>
+				
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/markers"sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/purple-pin.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>View all Locations</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Manage BuskerSpots Locations</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/complaints"sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/complaint1.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>View all Complaints</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Manage Business Queries and complaints</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>
+				
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/reservations"sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/reservations.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>Business Reservations</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Manage Business reservations for our locations</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>
+				
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/users"sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/users.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>System users</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Manage BuskerSpots users</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>
+		
+		</div>
+				<script>
+					window.onload = function() {
+						window.setTimeout(fadeout, 4000); //4 seconds
+					}
+
+					function fadeout() {
+						document.getElementById('fadeout').style.opacity = '0';
+					}
+				</script>
+			</div>
+			<div class="box">
+    <div class="container">
+     	<div class="row">
+     	
+				  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/addPerformanceRestrictions"sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/approved.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>Confirm Business Booking</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Reserve a location for a business.</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div> 
+				
+				 <a href="/addPerformanceRestrictions"sec:authorize="hasRole('ROLE_PERFORMER')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/music_icon.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>Booking</h4>
+						</div>
+                        
+						<div class="text">
+							<span>Reserve a location.</span>
+						</div>
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>
+     	
+     	</div>
+     	</div>
+     	
+Modal
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-center">
+        <div class="modal-dialog .modal-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span>
+
+                    </button>
+                     
+
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Date </th>
+							<th>message</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="reply:${replies}">
+							<td th:text="${reply.date}"></td>
+							<td th:text="${reply.replyMessage}"></td>
+			
+						</tr>
+					</tbody>
+
+				</table>.</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+	</div>
+</body>
+</html>
