@@ -21,9 +21,9 @@ public class OnlineShopApplication  implements  CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		  {
-    		  User newAdmin = new User("admin@gmail.com", "John","TUD- Aungier Street", "qqqqqqqq");
+    		  User newAdmin = new User("admin@gmail.com", "John","Tud-Aungier Street", "qqqqqqqq");
     		  userService.createAdmin(newAdmin); 
-    		 
+    		
     	  }
 	}
 }

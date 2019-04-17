@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{fragments/main_layout}">
 <head>
-<title>Performer Registration Form</title>
+<title>Merchandise  Form</title>
 
 </head>
 
@@ -12,39 +12,39 @@
 	 <div id="formContent">
 	<div class="alert alert-warning" th:if="${exist}">
 	<p class="text text-center">
-	  User with this Email already Exist
+	 Product with this Title already Exist
 	</p>
 	</div>
-		<form th:action="@{/register}" th:object="${user}" method="post">
+		<form th:action="@{/addMerch}" th:object="${merchandise}" method="post">
 <div class="card border-primary mb-3" style="margin: auto;">
-  <div class="card-header" style=" font-size:35px; background-color:#66ff99;color:#ffffff ">Customer Registration</div>
+  <div class="card-header" style=" font-size:35px; background-color:#66ff99;color:#ffffff ">Create Product</div>
   <div class="card-body">
-    <h2 class="card-title">Customer Information</h2>
+    <h2 class="card-title">Product Information</h2>
     <div class="form-group">
 				 <input
-					type="text" class="form-control" th:field="*{email}" id="email" placeholder="Email"  />
-				<div class="text text-danger" th:if="${#fields.hasErrors('email')}"
-					th:errors="*{email}"></div>
+					type="text" class="form-control" th:field="*{title}" id="email" placeholder="Product Title"  />
+				<div class="text text-danger" th:if="${#fields.hasErrors('title')}"
+					th:errors="*{title}"></div>
 			</div>
 			<div class="form-group">
 				 <input
-					type="password" class="form-control" th:field="*{password}"
-					id="password" placeholder="Password"/>
+					type="text" class="form-control" th:field="*{manufacturer}"
+					id="manufacturer" placeholder="Manufacturer"/>
 				<div class="text text-danger"
-					th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+					th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}"></div>
 
 			</div>
 			<div class="form-group">
-				 <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Full Name"/>
+				 <input type="number" class="form-control" th:field="*{price}" id="name" placeholder="Full Name"/>
 				<div class="text text-danger" th:if="${#fields.hasErrors('name')}"
 					th:errors="*{name}"></div>
 
 			</div>
 			
 			<div class="form-group">
-				 <input type="text" class="form-control" th:field="*{address}" id="address" placeholder="Shipping Address"/>
-				<div class="text text-danger" th:if="${#fields.hasErrors('address')}"
-					th:errors="*{address}"></div>
+				 <input type="text" class="form-control" th:field="*{category}" id="category" placeholder="Product Category"/>
+				<div class="text text-danger" th:if="${#fields.hasErrors('category')}"
+					th:errors="*{category}"></div>
 
 			</div>
 			<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
