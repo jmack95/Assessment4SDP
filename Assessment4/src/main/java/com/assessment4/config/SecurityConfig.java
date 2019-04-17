@@ -40,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/register", "/", "/about", "/login", "/css/**", "/webjars/**").permitAll()
 				.antMatchers("/profile").hasAnyRole("CUSTOMER,ADMIN")
 				.antMatchers("/users","/addPerformance").hasRole("ADMIN")
-				.antMatchers("/businesses","/addNotification").hasRole("ADMIN")
-				.antMatchers("/marker").hasRole("ADMIN")
+				.antMatchers("/users").hasRole("ADMIN")
+				.antMatchers("/addMerch").hasRole("ADMIN")
 				.and().formLogin().loginPage("/login").permitAll()
 				.defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/login");
 	}

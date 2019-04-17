@@ -23,7 +23,6 @@ public class ProfileController {
 		User user = userService.findOne(email);
 		model.addAttribute("name", user.getName());
 		
-		/*model.addAttribute("replies", replyService.findUserReply(user));*/
 		
 		
 		return "views/profile";

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Index Page</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+	     <form action="/products" class="form-inline">
+	        <div class="form-group mb-2">
+	         <input type="text" class="form-control" name="title" placeholder="Search Title" />
+	         <input type="submit" value="Search"  class="btn btn-primary"/>
+	        </div>
+	           
+	     </form>
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr class="table-active">
+							<th>Title</th>
+							<th>Manufacturer</th>
+							<th>Price</th>
+							<th>Category</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-secondary" th:each="merchandise:${products}">
+							<td th:text="${merchandise.title}"></td>
+							<td th:text="${merchandise.manufacturer}"></td>
+							<td th:text="${merchandise.price}"></td>
+							<td th:text="${merchandise.category}"></td>
+							<td><a  th:href="@{/delete-merch(title=${merchandise.title})}" class="btn btn-primary btn-lg"><i class="fas fa-trash-alt"></i></a></td>
+							
+					
+						</tr>
+					</tbody>
+
+				</table>
+				
+				<a type="button" href="/addMerch" class="btn btn-success">Add Product</a>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</body>
+</html>

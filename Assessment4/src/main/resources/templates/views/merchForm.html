@@ -35,18 +35,23 @@
 
 			</div>
 			<div class="form-group">
-				 <input type="number" class="form-control" th:field="*{price}" id="name" placeholder="Full Name"/>
-				<div class="text text-danger" th:if="${#fields.hasErrors('name')}"
-					th:errors="*{name}"></div>
+				 <input type="number"   class="form-control" th:field="*{price}" id="price" placeholder="Price"/>
+				<div class="text text-danger" th:if="${#fields.hasErrors('price')}"
+					th:errors="*{price}"></div>
 
 			</div>
 			
 			<div class="form-group">
-				 <input type="text" class="form-control" th:field="*{category}" id="category" placeholder="Product Category"/>
-				<div class="text text-danger" th:if="${#fields.hasErrors('category')}"
-					th:errors="*{category}"></div>
+							<label for="category" class="form-control-label">Category</label> <input
+								type="text" class="form-control" th:field="*{category}"
+								id="reason" list="reasons" />
+							<datalist id="reasons">
+								<option value="Kitchen Applicance">
+								<option value="T.V">
+								<option value="Laptops and personal computers">
+							</datalist>
 
-			</div>
+						</div>
 			<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
 			
   </div>
