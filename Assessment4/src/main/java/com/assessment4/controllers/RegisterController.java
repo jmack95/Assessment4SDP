@@ -9,13 +9,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.assessment4.entities.Cart;
 import com.assessment4.entities.User;
+import com.assessment4.services.CartService;
 import com.assessment4.services.UserService;
 
 @Controller
 public class RegisterController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CartService cartService;
 
 	@GetMapping("/register")
 	public String registerForm(Model model) {
@@ -37,8 +42,11 @@ public class RegisterController {
 
 		}
 		userService.createUser(user);
+		Cart cart = new Cart();
+		cart.setUser(user);
+		cartService.saveCart(cart);// cart created when user registers
 		
-		return "views/success";
+		return "views/loginForm";
 
 	}
 

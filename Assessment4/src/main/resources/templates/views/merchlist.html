@@ -20,20 +20,28 @@
 				<table class="table table-hover">
 					<thead>
 						<tr class="table-active">
+							<th>Image</th>
 							<th>Title</th>
 							<th>Manufacturer</th>
 							<th>Price</th>
 							<th>Category</th>
-							<th>Delete</th>
+							<th>Quantity</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')">Delete</th>
+							<th sec:authorize="hasRole('ROLE_CUSTOMER')">Add To Cart</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr class="table-secondary" th:each="merchandise:${products}">
+							
+							<td th:src="${'/images/' + merchandise?.pictureUrl}"></td>
+								
 							<td th:text="${merchandise.title}"></td>
 							<td th:text="${merchandise.manufacturer}"></td>
 							<td th:text="${merchandise.price}"></td>
 							<td th:text="${merchandise.category}"></td>
-							<td><a  th:href="@{/delete-merch(title=${merchandise.title})}" class="btn btn-primary btn-lg"><i class="fas fa-trash-alt"></i></a></td>
+							<td th:text="${merchandise.quantity}"></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a  th:href="@{/delete-merch(id=${merchandise.id})}" class="btn btn-primary btn-lg"><i class="fas fa-trash-alt"></i></a></td>
+						   <td sec:authorize="hasRole('ROLE_CUSTOMER')"><a  th:href="@{/addToCart(id=${merchandise.id})}" class="btn btn-primary btn-lg"><i class="fas fa-cart-arrow-down"></i></a></td>
 							
 					
 						</tr>
@@ -41,7 +49,7 @@
 
 				</table>
 				
-				<a type="button" href="/addMerch" class="btn btn-success">Add Product</a>
+				<a  sec:authorize="hasRole('ROLE_ADMIN')" type="button" href="/addMerch" class="btn btn-success">Add Product</a>
 			</div>
 			
 		</div>

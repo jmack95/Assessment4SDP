@@ -42,6 +42,11 @@
 			</div>
 			
 			<div class="form-group">
+				 <input type="number"   class="form-control" th:field="*{quantity}" id="quantity" placeholder="Quantity"/>
+				<div class="text text-danger" th:if="${#fields.hasErrors('quantity')}"
+					th:errors="*{quantity}"></div>
+			
+			<div class="form-group">
 							<label for="category" class="form-control-label">Category</label> <input
 								type="text" class="form-control" th:field="*{category}"
 								id="reason" list="reasons" />
@@ -52,6 +57,8 @@
 							</datalist>
 
 						</div>
+						
+						<tr><td></td><td><input type="file" name="pictureUrl" th:field="*{pictureUrl}"/></td></tr>
 			<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
 			
   </div>

@@ -41,19 +41,19 @@ public class MerchandiseController {
 				return "views/merchForm";
 			}
 			
-			merchandiseService.createMerch(merchandise);
+			merchandiseService.createMerchandise(merchandise);
 			
 			return "views/merchlist";
 
 		}
 		
-		@RequestMapping(method=RequestMethod.DELETE,value="/merchandise/{title}")
-		public void deleteTheMerchandise(@PathVariable String title) {
-			merchandiseService.deleteTheMerchandise(title);
+		@RequestMapping(method=RequestMethod.DELETE,value="/merchandise/{id}")
+		public void deleteTheMerchandise(@PathVariable int id) {
+			merchandiseService.deleteTheMerchandise(id);
 		}
 		@RequestMapping("/delete-merch")
-		public String deleteTheMarker(@RequestParam String title,HttpServletRequest request) {
-			merchandiseService.deleteTheMerchandise(title);
+		public String deleteTheMarker(@RequestParam int id,HttpServletRequest request) {
+			merchandiseService.deleteTheMerchandise(id);
 			request.setAttribute("merchandise", merchandiseService.showAllMerchandise());
 			
 			return "views/merchlist";
@@ -61,8 +61,10 @@ public class MerchandiseController {
 	 
 	 @GetMapping("/products")
 		public String listMerch(Model model, @RequestParam(defaultValue="")  String title, String manufacturer, String category) {
-			model.addAttribute("products", merchandiseService.findByTitle(title));
+			model.addAttribute("products", merchandiseService.findByTitleLike(title));
 			return "views/merchlist";
 		}
+	 
+	
 }
 	

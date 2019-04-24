@@ -1,16 +1,23 @@
 package com.assessment4.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Merchandise {
-
 	@Id
+	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	@NotEmpty
 	@Column(unique = true)
 	private String title;
@@ -19,12 +26,32 @@ public class Merchandise {
 	 private Double price;
 	@NotEmpty
 	private String category;
+	private int quantity;
+	
 	private String pictureUrl;
 	
-//Getters&setters
+	@OneToMany(mappedBy="merchandise")
+	private Set<CartMerchandise> cartMerchandise;
 
 	
+//Getters&setters
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+
+
+	public Set<CartMerchandise> getCartMerchandise() {
+		return cartMerchandise;
+	}
+
+	public void setCartMerchandise(Set<CartMerchandise> cartMerchandise) {
+		this.cartMerchandise = cartMerchandise;
+	}
 
 	public String getTitle() {
 		return title;
@@ -57,6 +84,15 @@ public class Merchandise {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	
 	public String getPictureUrl() {
 		return pictureUrl;

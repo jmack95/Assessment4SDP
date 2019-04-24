@@ -11,7 +11,7 @@ import com.assessment4.entities.Role;
 import com.assessment4.entities.User;
 import com.assessment4.repositories.UserRepository;
 
-@Service("userService")
+@Service
 public class UserService {
 	
 	@Autowired
