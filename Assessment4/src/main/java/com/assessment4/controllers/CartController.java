@@ -54,29 +54,29 @@ public class CartController {
 		
 		
 
-		ArrayList<CartMerchandise> cartMerchandise = new ArrayList<CartMerchandise>();
-		cartMerchandise.addAll(cart.getCartMerchandise());
+		ArrayList<CartMerchandise> cmerchandise = new ArrayList<CartMerchandise>();
+		cmerchandise.addAll(cart.getCartMerchandise());
 		boolean exist = true;
 
-		for (int i = 0; i < cartMerchandise.size(); i++) {
-		CartMerchandise theMerch = cartMerchandise.get(i);
+		for (int i = 0; i < cmerchandise.size(); i++) {
+		CartMerchandise theMerch = cmerchandise.get(i);
 		if (theMerch.getMerchandise() == merchandise) {
 
-		int temp = cartMerchandise.get(i).getAmount();
-		cartMerchandise.get(i).setAmount(temp+1);
-		cartMerchandiseService.saveCartMerchandise(cartMerchandise.get(i));
-		Set<CartMerchandise> updatedList = new HashSet<>(cartMerchandise);
+		int temp = cmerchandise.get(i).getAmount();
+		cmerchandise.get(i).setAmount(temp+1);
+		cartMerchandiseService.saveCartMerchandise(cmerchandise.get(i));
+		Set<CartMerchandise> updatedList = new HashSet<>(cmerchandise);
 		cart.setCartMerchandise(updatedList);
 		exist = false;
 		}
 		}
 
 		if (exist) {
-			CartMerchandise cartM = new CartMerchandise(cart, merchandise, 1);
-			cartMerchandiseService.saveCartMerchandise(cartM);
-		cartMerchandise.add(cartM);
+			CartMerchandise cartMerchandise = new CartMerchandise(cart, merchandise, 1);
+			cartMerchandiseService.saveCartMerchandise(cartMerchandise);
+			cmerchandise.add(cartMerchandise);
 
-		Set<CartMerchandise> updatedList = new HashSet<>(cartMerchandise);
+		Set<CartMerchandise> updatedList = new HashSet<>(cmerchandise);
 
 		cart.setCartMerchandise(updatedList);
 		} 
@@ -98,7 +98,6 @@ public class CartController {
 	ArrayList<CartMerchandise> cm = new ArrayList<CartMerchandise>();
 	cm.addAll(cart.getCartMerchandise());
 	model.addAttribute("cart", cart);
-	model.addAttribute("cartMerchandise", cm);
 
 	double cartMerchTotal = 0;
 	for (int i = 0; i < cm.size(); i++) {
@@ -106,8 +105,10 @@ public class CartController {
 	Merchandise merchandise = merchandiseService.findById(cartMerchandise.getMerchandise().getId());
 	cartMerchTotal = cartMerchTotal + (merchandise.getPrice() * cartMerchandise.getAmount());
 	}
+
 	
-	model.addAttribute("cmtotal", cartMerchTotal);
+	model.addAttribute("cartMerchandise", cm);
+	model.addAttribute("cmTotal", cartMerchTotal);
 
 	return "views/myCart";
 	}

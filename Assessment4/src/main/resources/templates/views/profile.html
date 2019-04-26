@@ -5,7 +5,7 @@
 <head>
 <title>Index Page</title>
 <style>
-#fadeout {
+#name {
   opacity: 1;
   transition: 1s opacity;
   text-align: left;
@@ -22,9 +22,71 @@
 
 	
 
-<div id="fadeout">Hey,<span th:utext="${name}"></span></div>
+<div id="name">Hey,<span th:utext="${name}"></span></div>
 
+<div class="box">
+    <div class="container">
+     	<div class="row">
+			 
+			    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/products">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/devices.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>View products</h4>
+						</div>
+                      
+					 </div>
+					 </a>
+				</div>	
+				
+				
+				
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/myCart"sec:authorize="hasRole('ROLE_CUSTOMER')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/basket.png" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>View your Cart</h4>
+						</div>
+                        
+						
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>	 
+				
+				
+				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+               <a href="/users"sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="box-part text-center">
+                        
+                       <img  style="width: 200px; height: 150px" src= "images/u.jpg" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h4>View Users</h4>
+						</div>
+                        
+						
+                        
+						
+                        
+					 </div>
+					 </a>
+				</div>	
 
+</div>
+</div>
+</div>
 
 	</div>
 </body>

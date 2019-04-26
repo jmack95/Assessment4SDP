@@ -55,10 +55,7 @@ public class UserOrder {
 		this.orderMerchandise = merchandise;
 	}
 
-	public UserOrder(User user, Set<Merchandise> merchandise) {
-		this.user = user;
-		this.orderMerchandise = merchandise;
-	}
+	
 	
 
 	public Set<Merchandise> getOrderMerchandise() {
@@ -88,7 +85,11 @@ public class UserOrder {
 	        this.total = total;
 
 	    }
-	 
+
+	 public boolean pay(Payment payment, Cart cart) {
+	        double totalCost = cart.calculateTotal();
+	        return payment.purchase(totalCost);
+	    }
 	 
 	
 }

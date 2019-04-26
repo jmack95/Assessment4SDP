@@ -27,6 +27,7 @@ public class Cart {
 	private User user;
 	@OneToMany(mappedBy = "cart")
 	private Set<CartMerchandise> cartMerchandise;
+	private static Cart cart;
 
 	public Set<CartMerchandise> getCartMerchandise() {
 		return cartMerchandise;
@@ -52,8 +53,15 @@ public class Cart {
 		this.user = user;
 	}
 
-	public Cart(User user) {
+	private Cart(User user) {
 		this.user = user;
+	}
+	
+	public static Cart getInstance(User user) {
+		if(cart == null) {
+			cart = new Cart(user);
+		}
+		return cart;
 	}
 
 	public Cart() {

@@ -42,7 +42,7 @@ public class RegisterController {
 
 		}
 		userService.createUser(user);
-		Cart cart = new Cart();
+		Cart cart = Cart.getInstance(user);
 		cart.setUser(user);
 		cartService.saveCart(cart);// cart created when user registers
 		

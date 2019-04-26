@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+<section layout:fragment="content">
+ 
+            <div class="container myspace">
+               
+                <form th:action="@{/order}" method="POST" th:object="${userOrder}">
+                    <div class="card border-primary mb-3" style="margin: auto;">
+  <div class="card-header" style=" font-size:35px; background-color:#E6E6FA;color:#80808080 ">Order Information</div>
+  <div class="card-body">
+     <h2>Total payment: €<span th:utext="${cmTotal}"></span></h2>
+    <div class="form-group">
+                 
+                    <div class="form-group">
+                        
+                        <select class="form-control" id="payment_method" name="payment_method">
+                            <option value="Visa">Visa</option>
+                            <option value="Mastercard">Mastercard</option>
+                        </select>
+                      
+                    </div>
+                   <input type="hidden" name="cmTotal" th:value="${cmTotal}"/>
+                  
+                    </div>
+                    <div class="form-group">
+         
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Cardholder name"  />
+                    </div>
+                    <div class="form-group">
+                    
+                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="16 Digit number"  />
+                    </div>
+                    <div class="form-group">
+                    
+                        <input type="date" class="form-control" id="expiry" name="expiry" placeholder="Expiry date" />
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
