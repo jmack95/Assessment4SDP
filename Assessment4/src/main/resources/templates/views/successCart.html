@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/main_layout}" >
+<head>
+ <title>Index Page</title>
+</head>
+<body>
+
+     <div  layout:fragment="content" class="container mySpace">
+          <div class="alert alert-info">
+            Item added to cart.       
+          </div>
+          <a type="button" href="/products"  class="btn btn-outline-info">Add More products to chart</a>
+          <a  type="button" href="/myCart" class="btn btn-outline-info">Go to Cart</a>
+     </div>
+</body>
+</html>

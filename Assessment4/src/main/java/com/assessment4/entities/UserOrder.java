@@ -26,8 +26,11 @@ public class UserOrder {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "order_merchandise", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "merchandise_id"))
 	private Set<Merchandise> orderMerchandise;
-	private String paymentMethod;
+	
+	private double total;
+	
 
+	
 	public int getId() {
 		return id;
 	}
@@ -57,14 +60,6 @@ public class UserOrder {
 		this.orderMerchandise = merchandise;
 	}
 	
-	public String getPaymentMethod() {
-		return paymentMethod;
-	}
-
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod = paymentMethod;
-	}
-	
 
 	public Set<Merchandise> getOrderMerchandise() {
 		return orderMerchandise;
@@ -73,9 +68,27 @@ public class UserOrder {
 	public void setOrderMerchandise(Set<Merchandise> orderMerchandise) {
 		this.orderMerchandise = orderMerchandise;
 	}
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	 
+
 
 	public UserOrder() {
 		
 	}
+	
+	 public UserOrder( User user, Set<Merchandise> orderMerchandise,double total) {
+	        this.user = user;
+	        this.orderMerchandise = orderMerchandise;
+	        this.total = total;
+
+	    }
+	 
+	 
 	
 }

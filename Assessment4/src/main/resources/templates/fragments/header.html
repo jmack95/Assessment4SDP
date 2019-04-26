@@ -2,7 +2,7 @@
 <header th:fragment="header">
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
+<nav class="navbar navbar-expand-lg navbar-success bg-light">
   <a class="navbar-brand" href="/"> Online Store </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon" align="center"></span>
@@ -29,47 +29,16 @@
       </li>
       
          <li class="nav-item"  >
-        <a class="nav-link" href="/products">Toggle products </a>
+        <a class="nav-link" href="/products"><i class="fas fa-blender-phone"></i> Products <i class="fas fa-desktop"></i></a>
+      </li>
+      
+       <li class="nav-item" sec:authorize="hasRole('ROLE_CUSTOMER')"  >
+        <a class="nav-link" href="/myCart">Your Basket <i class="fas fa-shopping-basket"></i> </a>
       </li>
       
    
       
-      <!-- <li class="nav-item" sec:authorize="hasRole('ROLE_BUSINESS')">
-        <a class="nav-link" href="/performances">Performances</a>
-      </li>  <li class="nav-item">
       
-     
-      
-      <li class="nav-item" sec:authorize="hasRole('ROLE_BUSINESS')">
-        <a class="nav-link" href="/reservation">Reserve Location <i class="fas fa-truck-loading"></i></a>
-      </li>  <li class="nav-item">
-      
-          Dropdown
-    <li class="nav-item dropdown"   sec:authorize="hasRole('ROLE_ADMIN')">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        View <i class="far fa-eye"></i>
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/reservations"> Business Reservations</a>
-        <a class="dropdown-item" href="/users">Users</a>
-        <a class="dropdown-item" href="/markers">Locations</a>
-        
-      </div>
-    </li> -->
-      
-     
-     <!--    
-        <!-- Dropdown
-    <li class="nav-item dropdown"   sec:authorize="hasRole('ROLE_ADMIN')">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Create <i class="fas fa-plus"></i>
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/marker">New Location</a>
-        <a class="dropdown-item" href="/registerAdmin">Administrator</a>
-        
-      </div>
-    </li> - -->
     </ul>
     <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post"  sec:authorize="isAuthenticated()">
       <input class="form-control mr-sm-2" type="hidden" /> 

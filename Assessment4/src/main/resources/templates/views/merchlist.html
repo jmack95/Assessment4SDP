@@ -25,30 +25,27 @@
 							<th>Manufacturer</th>
 							<th>Price</th>
 							<th>Category</th>
-							<th>Quantity</th>
+							<th>In Stock</th>
 							<th sec:authorize="hasRole('ROLE_ADMIN')">Delete</th>
 							<th sec:authorize="hasRole('ROLE_CUSTOMER')">Add To Cart</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="table-secondary" th:each="merchandise:${products}">
-							
-							<td th:src="${'/images/' + merchandise?.pictureUrl}"></td>
-								
+						<tr class="table-idark" th:each="merchandise:${products}">
+							<td> <img th:src="@{merchandise.pictureUrl}"></td>
 							<td th:text="${merchandise.title}"></td>
 							<td th:text="${merchandise.manufacturer}"></td>
 							<td th:text="${merchandise.price}"></td>
 							<td th:text="${merchandise.category}"></td>
 							<td th:text="${merchandise.quantity}"></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a  th:href="@{/delete-merch(id=${merchandise.id})}" class="btn btn-primary btn-lg"><i class="fas fa-trash-alt"></i></a></td>
-						   <td sec:authorize="hasRole('ROLE_CUSTOMER')"><a  th:href="@{/addToCart(id=${merchandise.id})}" class="btn btn-primary btn-lg"><i class="fas fa-cart-arrow-down"></i></a></td>
+						   <td sec:authorize="hasRole('ROLE_CUSTOMER')"><a  th:href="@{/addToCart(id=${merchandise.id})}" class="btn btn-info btn-lg"><i class="fas fa-cart-arrow-down"></i></a></td>
 							
 					
 						</tr>
 					</tbody>
 
 				</table>
-				
 				<a  sec:authorize="hasRole('ROLE_ADMIN')" type="button" href="/addMerch" class="btn btn-success">Add Product</a>
 			</div>
 			

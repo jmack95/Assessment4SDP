@@ -60,7 +60,7 @@ public class MerchandiseController {
 		}
 	 
 	 @GetMapping("/products")
-		public String listMerch(Model model, @RequestParam(defaultValue="")  String title, String manufacturer, String category) {
+		public String listMerch(Model model, @RequestParam(defaultValue="")  String title, String manufacturer, String category, String pictureUrl) {
 			model.addAttribute("products", merchandiseService.findByTitleLike(title));
 			return "views/merchlist";
 		}

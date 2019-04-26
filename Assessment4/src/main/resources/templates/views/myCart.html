@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Index Page</title>
+<style>
+#name {
+  opacity: 1;
+  transition: 1s opacity;
+  text-align: left;
+  color:#82619b;
+  font-size:30px;
+}
+
+#total {
+  opacity: 1;
+  transition: 1s opacity;
+  text-align: center;
+  color:#82619b;
+  font-size:30px;
+}
+</style>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container mySpace">
+
+		<div id="name">
+			This Cart belongs to:<br><span th:utext="${name}"></span>
+		</div>
+		
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Category</th>
+							<th>Manufacturer</th>
+							<th>Quantity in cart</th>
+							<th>Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cartMerchandise:${cartMerchandise}">
+							<td th:text="${cartMerchandise.merchandise.title}"></td>
+							<td th:text="${cartMerchandise.merchandise.category}"></td>
+							<td th:text="${cartMerchandise.merchandise.manufacturer}"></td>
+							<td th:text="${cartMerchandise.amount}"></td>
+							<td th:text="(${cartMerchandise.merchandise.price}) * (${cartMerchandise.amount})"></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="total" >
+			<b>Cart total:</b>  <i class="fas fa-euro-sign"></i><span th:utext="${cmtotal}"></span>
+		</div>
+		
+		<a type="button" href="/purchaseCart"  class="btn btn-outline-primary">Purchase cart</a>
+	</div>
+</body>
+</html>
+
+
+

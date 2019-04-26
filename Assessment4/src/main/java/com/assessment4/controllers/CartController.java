@@ -1,5 +1,6 @@
 package com.assessment4.controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -50,62 +51,66 @@ public class CartController {
 		User user = userService.findOne(auth.getName());
 		Cart cart = cartService.findByUserEmail(user.getEmail());
 		Merchandise merchandise = merchandiseService.findById(id);
+		
+		
 
-		ArrayList<CartMerchandise> cart_merchandise = new ArrayList<CartMerchandise>();
-	
-		cart_merchandise.addAll(cart.getCartMerchandise());
+		ArrayList<CartMerchandise> cartMerchandise = new ArrayList<CartMerchandise>();
+		cartMerchandise.addAll(cart.getCartMerchandise());
 		boolean exist = true;
 
-		for (int i = 0; i < cart_merchandise.size(); i++) {
-		CartMerchandise theMerch = cart_merchandise.get(i);
+		for (int i = 0; i < cartMerchandise.size(); i++) {
+		CartMerchandise theMerch = cartMerchandise.get(i);
 		if (theMerch.getMerchandise() == merchandise) {
 
-		int temp = cart_merchandise.get(i).getAmount();
-		cart_merchandise.get(i).setAmount(temp+1);
-
-		cartMerchandiseService.saveCartMerchandise(cart_merchandise.get(i));
-		Set<CartMerchandise> updatedList = new HashSet<>(cart_merchandise);
+		int temp = cartMerchandise.get(i).getAmount();
+		cartMerchandise.get(i).setAmount(temp+1);
+		cartMerchandiseService.saveCartMerchandise(cartMerchandise.get(i));
+		Set<CartMerchandise> updatedList = new HashSet<>(cartMerchandise);
 		cart.setCartMerchandise(updatedList);
 		exist = false;
 		}
 		}
 
 		if (exist) {
-			CartMerchandise cartMerchandise = new CartMerchandise(cart, merchandise, 1);
-			cartMerchandiseService.saveCartMerchandise(cartMerchandise);
-		cart_merchandise.add(cartMerchandise);
+			CartMerchandise cartM = new CartMerchandise(cart, merchandise, 1);
+			cartMerchandiseService.saveCartMerchandise(cartM);
+		cartMerchandise.add(cartM);
 
-		Set<CartMerchandise> updatedList = new HashSet<>(cart_merchandise);
+		Set<CartMerchandise> updatedList = new HashSet<>(cartMerchandise);
 
 		cart.setCartMerchandise(updatedList);
-		}
-
+		} 
 		cartService.saveCart(cart);
-
-		String successMessage = "";
-		model.addAttribute("successMessage", successMessage);
-
 		List<Merchandise> merch = merchandiseService.findByTitleLike(title);
 		model.addAttribute("merchandise", merch);
 		
 
-		return "views/itemList";
+		return "views/successCart";
 	}
 	
-	 @GetMapping("/viewCart")
-	 public String viewCart(Model model) {
-	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	 User user = userService.findOne(auth.getName());
-	 Cart cart = user.getCart();
-	 // Set <Item> items = cart.getItems();
-	 List<CartMerchandise> cartItems = new ArrayList<>();
-	 cartItems.addAll(cart.getCartMerchandise());
-	 model.addAttribute("cartItems", cartItems);
-	 model.addAttribute("name", user.getName());
-	 double price = cart.calculateTotal();
-	 model.addAttribute("total", price);
-	 model.addAttribute("cart", cart);
-	 return "views/viewCart";
-	 }
+	@GetMapping("/myCart")
+	public String viewCart(Model model , Principal principal) {
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	String email = principal.getName();
+	User user = userService.findOne(email);
+	model.addAttribute("name", user.getName());
+	Cart cart = cartService.findByUserEmail(user.getEmail());
+	ArrayList<CartMerchandise> cm = new ArrayList<CartMerchandise>();
+	cm.addAll(cart.getCartMerchandise());
+	model.addAttribute("cart", cart);
+	model.addAttribute("cartMerchandise", cm);
+
+	double cartMerchTotal = 0;
+	for (int i = 0; i < cm.size(); i++) {
+	CartMerchandise cartMerchandise = cm.get(i);
+	Merchandise merchandise = merchandiseService.findById(cartMerchandise.getMerchandise().getId());
+	cartMerchTotal = cartMerchTotal + (merchandise.getPrice() * cartMerchandise.getAmount());
+	}
+	
+	model.addAttribute("cmtotal", cartMerchTotal);
+
+	return "views/myCart";
+	}
+	
 
 }
